@@ -1,102 +1,211 @@
-<!doctype html>
-<html class="no-js">
-  <head>
-    <meta charset="utf-8">
-    <title>vb incidents app</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width">
-    <link rel="shortcut icon" href="/favicon.ico">
-    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-    <!-- build:css(.) styles/vendor.css -->
-    <!-- bower:css -->
-    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
-    <!-- endbower -->
-    <!-- endbuild -->
-    <!-- build:css(.tmp) styles/main.css -->
-    <link rel="stylesheet" href="styles/main.css">
-    <!-- endbuild -->
-    <!-- build:js scripts/vendor/modernizr.js -->
-    <script src="bower_components/modernizr/modernizr.js"></script>
-    <!-- endbuild -->
+<html>
 
-  </head>
-  <body>
-    <!--[if lt IE 10]>
-      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->
+<head>
+	<meta charset="utf-8">
+    <title>Beacon - Find a Safer Way</title>
+    <link rel="stylesheet" href="styles/bootstrap.css" />
+    <!--<link rel="stylesheet" href="styles/main.css">
+    <script src="scripts/modernizr/modernizr.js"></script>-->
+    <link href="material/css/ripples.min.css" rel="stylesheet">
+    <link href="material/css/material-wfont.min.css" rel="stylesheet">
 
-
-    <div class="container">
-      <div class="header">
-        <ul class="nav nav-pills pull-right">
-          <li class="active"><a href="#">Home</a></li>
-          <li><a href="#">About</a></li>
-          <li><a href="#">Contact</a></li>
-        </ul>
-        <h3 class="text-muted">vb incidents app</h3>
-      </div>
-
-      <div class="jumbotron">
-        <h1>'Allo, 'Allo!</h1>
-        <p class="lead">Always a pleasure scaffolding your apps.</p>
-        <p><a class="btn btn-lg btn-success" href="#">Splendid! <span class="glyphicon glyphicon-ok"></span></a></p>
-      </div>
-
-      <div class="row marketing">
-        <div class="col-lg-6">
-          <h4>HTML5 Boilerplate</h4>
-          <p>HTML5 Boilerplate is a professional front-end template for building fast, robust, and adaptable web apps or sites.</p>
+	<style>
+		.h1, .h2, .h3, .h4, .h5, .h6, body, h1, h2, h3, h4, h5, h6 {font-weight: 100;}
+		.row {padding: 5px 40px 5px 40px;}
+		#map { z-index:-1; position:absolute; width:100%;height:100%; margin:0; padding:0; margin-top: -20px; }
+		.least-content {font-size: 11px;}
+	</style>
+	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css"/>
+	<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+	<script>
+		$('.pull-down').each(function() {
+	$(this).css('margin-top', $(this).parent().height()-$(this).height())});</script>
+	<style>
+		.h1, .h2, .h3, .h4, .h5, .h6, body, h1, h2, h3, h4, h5, h6 {font-weight: 100;}
+		.row {padding: 5px 40px 5px 40px;}
+		#map { z-index:-1; position:absolute; width:100%;height:100%; margin:0; padding:0; margin-top: -20px; }
+		.least-content {font-size: 11px;}
+	</style>
+	  
+</head>
 
 
-
-          <h4>Bootstrap</h4>
-          <p>Sleek, intuitive, and powerful mobile first front-end framework for faster and easier web development.</p>
-
-          <h4>Modernizr</h4>
-          <p>Modernizr is an open-source JavaScript library that helps you build the next generation of HTML5 and CSS3-powered websites.</p>
-
-        </div>
-      </div>
-
-      <div class="footer">
-        <p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p>
-      </div>
-
+<body>
+<!-- Your site -->
+<nav class="navbar navbar-default" role="navigation" style="background: #da5c3e;">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#"><center><img src="images/logo.png" class="img-responsive" height="25" width="25"><img style="float: left; display: inline; margin-top: 5px;" src="images/brand2.png" height="7"></center></a>
     </div>
 
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        <li class="active"><a href="#">Link</a></li>
+        <li><a href="#">Link</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+            <li class="divider"></li>
+            <li><a href="#">One more separated link</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+	<div id="map"></div>
+	<!--<div id="row">
+		<div class="col-lg-3 col-md-3 col-sm-3"></div>
+		
+		<div class="col-lg-6 col-md-6 col-sm-6">
+			<center>
+			<div class="well col-lg-12 col-md-12 col-sm-12">
+				<h2> Find the Safer Path</h2>
+				<div class="input-group input-group-lg">
+				  <span class="input-group-addon"><i class="icon icon-material-directions"></i></span>
+				  <input type="text" class="form-control" placeholder="Start Point">
+				</div>
+			</div>
+			<div class="well col-lg-12 col-md-12 col-sm-12" style="margin-top: 10px;">
+				<div class="input-group input-group-lg">
+				  <span class="input-group-addon"><i class="icon icon-material-map"></i></span>
+				  <input type="text" class="form-control" placeholder="End Point">
+				</div>
+			</div>
+			<div class="well col-lg-12 col-md-12 col-sm-12" style="margin-top: 20px;">
+				<h5>How are you getting there?</h5>
+					<div class="btn-group" data-toggle="buttons">
+					  <label class="btn btn-primary active btn-flat">
+						<input type="radio" name="options" id="option1" checked><i style="color: #fff;" class="icon icon-material-directionswalk"></i> On Foot
+					  </label>
+					  <label class="btn btn-primary btn-flat">
+						<input type="radio" name="options" id="option2"><i style="color: #fff;"  class="icon icon-material-directions-bike"></i> On Bike
+					  </label>
+					</div>
+                </div>
+				<a href="javascript:void(0)" class="btn btn-lg btn-info btn-raised">Let's Go</a></br>
+				<a href="javascript:void(0)" class="btn btn-primary btn-raised btn-xs">or Explore My Current Area</a>
+			</center>
+		</div>-->
+			
+			<div class="col-lg-3 col-md-3 col-sm-3"></div>  
+		</div>
+		
+		<div class="row well" style="position: absolute; bottom: 0; right: 40px; left: 40px;">
+			<div class="col-lg-12 col-md-12 col-sm-12">
+				<center>
+				<h2>Colley Avenue</h2>
+				<h5>500 Block</h5>
+				<p>700 Feet</p>
+				</center>
+				<div class="list-group">
+					<div class="list-group-item">
+						<div class="row-action-primary">
+							<i class="icon-material-call-split"></i>
+						</div>
+						<div class="row-content">
+							<div class="least-content">14 Routes</div>
+							<h4 class="list-group-item-heading">Most Popular Routes</h4>
+							<p class="list-group-item-text"></p>
+						</div>
+					</div>
+					<div class="list-group-separator"></div>
+					<div class="list-group-item">
+						<div class="row-action-primary">
+							<i class="icon-material-flag"></i>
+						</div>
+						<div class="row-content">
+							<div class="least-content">1 Incident in the past year</div>
+							<h4 class="list-group-item-heading">Safety</h4>
+							<p class="list-group-item-text">This stretch is well lit and low in crime</p>
+						</div>
+					</div>
+					<div class="list-group-separator"></div>
+					<div class="list-group-item">
+						<div class="row-action-primary">
+							<i class="icon-material-info"></i>
+						</div>
+						<div class="row-content">
+							<div class="least-content"></div>
+							<h4 class="list-group-item-heading">Type</h4>
+							<p class="list-group-item-text">2-two, 2-Lane, Road-Way, Low-Traffic</p>
+						</div>
+					</div>
+					<div class="list-group-separator"></div>
+				</div>
+			</div>
+		</div>
 
-    <!-- build:js(.) scripts/vendor.js -->
-    <!-- bower:js -->
-    <!-- endbower -->
-    <!-- endbuild -->
 
-    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-    <script>
-      (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
-      function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-      e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-      e.src='//www.google-analytics.com/analytics.js';
-      r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-      ga('create','UA-XXXXX-X');ga('send','pageview');
-    </script>
+    <!-- Your site ends -->
+	<!--Leaflet Map Initialize-->	
+	<script>
+  // initialize the map with our own location HRVA!
+	var map = L.map('map').setView([37.040, -76.386], 10);
 
-        <!-- build:js(.) scripts/plugins.js -->
-        <script src="bower_components/bootstrap/js/affix.js"></script>
-        <script src="bower_components/bootstrap/js/alert.js"></script>
-        <script src="bower_components/bootstrap/js/dropdown.js"></script>
-        <script src="bower_components/bootstrap/js/tooltip.js"></script>
-        <script src="bower_components/bootstrap/js/modal.js"></script>
-        <script src="bower_components/bootstrap/js/transition.js"></script>
-        <script src="bower_components/bootstrap/js/button.js"></script>
-        <script src="bower_components/bootstrap/js/popover.js"></script>
-        <script src="bower_components/bootstrap/js/carousel.js"></script>
-        <script src="bower_components/bootstrap/js/scrollspy.js"></script>
-        <script src="bower_components/bootstrap/js/collapse.js"></script>
-        <script src="bower_components/bootstrap/js/tab.js"></script>
-        <!-- endbuild -->
 
-        <!-- build:js({app,.tmp}) scripts/main.js -->
-        <script src="scripts/main.js"></script>
-        <!-- endbuild -->
+
+		L.tileLayer('https://{s}.tiles.mapbox.com/v3/{id}/{z}/{x}/{y}.png', {
+			maxZoom: 18,
+			attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
+				'<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+				'Imagery © <a href="http://mapbox.com">Mapbox</a>',
+			id: 'examples.map-i875mjb7'
+		}).addTo(map);
+
+
+		L.marker([51.5, -0.09]).addTo(map)
+			.bindPopup("<b>Hello world!</b><br />whatsup!.").openPopup();
+
+		L.circle([51.508, -0.11], 500, {
+			color: 'red',
+			fillColor: '#f03',
+			fillOpacity: 0.5
+		}).addTo(map).bindPopup("I am a circle.");
+
+		L.polygon([
+			[51.509, -0.08],
+			[51.503, -0.06],
+			[51.51, -0.047]
+		]).addTo(map).bindPopup("I am a polygon.");
+
+
+		var popup = L.popup();
+
+		function onMapClick(e) {
+			popup
+				.setLatLng(e.latlng)
+				.setContent("You clicked the map at " + e.latlng.toString())
+				.openOn(map);
+		}
+
+		map.on('click', onMapClick);
+
+	
+
+  </script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+    <script src="material/js/ripples.min.js"></script>
+    <script src="material/js/material.min.js"></script><script src="//fezvrasta.github.io/snackbarjs/dist/snackbar.min.js"></script>
+	
+
 </body>
+
 </html>
